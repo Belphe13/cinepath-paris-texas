@@ -1,7 +1,8 @@
 var map;
 function initMap() {
        map = new google.maps.Map(document.getElementById('map'), {
-         zoom: 6,
+         zoom: 5,
+	 disableDefaultUI: true,
          center: new google.maps.LatLng(29.321359,-103.615976),
          styles: [{elementType: 'geometry', stylers: [{color: '#242f3e'}]},
            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -31,7 +32,7 @@ function animate(jsonData, index, path, lastTimestamp){
        var data = JSON.parse(jsonData);
        var location = data.locations[index];
        var thisTimestamp = data.locations[index].mElapsedRealtimeNanos;
-       var timeout = (thisTimestamp - lastTimestamp)/3000000;
+       var timeout = (thisTimestamp - lastTimestamp)/20000000;
        var gLocation = new google.maps.LatLng(location.mLatitude,location.mLongitude);
 //       map.panTo(gLocation);
        path.push(gLocation);
