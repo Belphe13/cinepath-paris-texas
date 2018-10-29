@@ -1,5 +1,5 @@
 var map;
-function initMap() {
+async function initMap() {
        map = new google.maps.Map(document.getElementById('map'), {
          zoom: 4,
 	 disableDefaultUI: true,
@@ -25,12 +25,16 @@ function initMap() {
          ]
        });
        getDirections1(map);
-       getDirections2(map);
+
+       setTimeout(function(){
+                   getDirections2(map);
+                },3029);
+
 }
 
 
 
-function autoRefresh(map, pathCoords) {
+function autoRefresh1(map, pathCoords) {
     var i, route;
 
     route = new google.maps.Polyline({
@@ -48,9 +52,40 @@ function autoRefresh(map, pathCoords) {
             route.getPath().push(coords);
         }, 10 * i, pathCoords[i]);
     }
+
+
+
 }
 
-function getDirections1(map, callback) {
+function autoRefresh2(map, pathCoords) {
+    var i, route;
+
+    route = new google.maps.Polyline({
+        path: [],
+        geodesic : true,
+        strokeColor: 'white',
+        strokeOpacity: 1.0,
+        strokeWeight: 5,
+        editable: false,
+        map:map
+    });
+
+
+    for (i = 0; i < pathCoords.length; i++) {
+        setTimeout(function(coords) {
+            route.getPath().push(coords);
+        }, 3 * i, pathCoords[i]);
+    }
+
+
+
+}
+
+
+
+async function getDirections1(map, callback) {
+
+
 
     var waypts = [{location: 'Dallas, TX'}, {location: 'El Paso, TX'}];
     var directionsService1 = new google.maps.DirectionsService();
@@ -64,12 +99,12 @@ function getDirections1(map, callback) {
 
     directionsService1.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            autoRefresh(map, result.routes[0].overview_path);
+            autoRefresh1(map, result.routes[0].overview_path);
         }
 });
 }
 
-function getDirections2(map) {
+async function getDirections2(map) {
 
 
     var waypts = [{location: 'San Francisco, CA'}, {location: 'Yellowstone National Park, WY'}];
@@ -84,10 +119,10 @@ function getDirections2(map) {
 
     directionsService2.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            autoRefresh(map, result.routes[0].overview_path);
+            autoRefresh2(map, result.routes[0].overview_path);
         }
 });
 
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', initMap);
