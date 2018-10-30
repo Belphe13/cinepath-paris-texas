@@ -1,9 +1,15 @@
+/*  Future Improvement
+*   Detailed line colors
+*   Potential smooth PanTo
+*/
+
 var map;
+
 async function initMap() {
        map = new google.maps.Map(document.getElementById('map'), {
-         zoom: 4,
-	 disableDefaultUI: true,
-         center: new google.maps.LatLng(29.321359,-103.615976),
+         zoom: 6,
+         disableDefaultUI: true,
+         center: new google.maps.LatLng(32.374102, -109.569085),
          styles: [{elementType: 'geometry', stylers: [{color: '#242f3e'}]},
            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
@@ -24,20 +30,28 @@ async function initMap() {
            {featureType: 'water', elementType: 'labels.text.stroke', stylers: [{color: '#17263c'}]}
          ]
        });
+
        getDirections1(map);
 
        setTimeout(function(){
-                   getDirections2(map);
-                },3029);
+         jump1(map);
+       }, 3000);
 
+       setTimeout(function(){
+         getDirections2(map);
+       }, 3100);
+
+      setTimeout(function(){
+        getDirections3(map);
+      }, 6000);
 }
 
-
-
-function autoRefresh1(map, pathCoords) {
-    var i, route;
-
-    route = new google.maps.Polyline({
+/* Travel Modes
+*  Walking speed: 10
+*  Driving speed: 10
+*/
+function walking(map, pathCoords) {
+    var route = new google.maps.Polyline({
         path: [],
         geodesic : true,
         strokeColor: 'white',
@@ -47,20 +61,15 @@ function autoRefresh1(map, pathCoords) {
         map:map
     });
 
-    for (i = 0; i < pathCoords.length; i++) {
+    for (var i = 0; i < pathCoords.length; i++) {
         setTimeout(function(coords) {
             route.getPath().push(coords);
         }, 10 * i, pathCoords[i]);
     }
-
-
-
 }
 
-function autoRefresh2(map, pathCoords) {
-    var i, route;
-
-    route = new google.maps.Polyline({
+function driving(map, pathCoords) {
+    var route = new google.maps.Polyline({
         path: [],
         geodesic : true,
         strokeColor: 'white',
@@ -70,59 +79,120 @@ function autoRefresh2(map, pathCoords) {
         map:map
     });
 
-
-    for (i = 0; i < pathCoords.length; i++) {
+    for (var i = 0; i < pathCoords.length; i++) {
         setTimeout(function(coords) {
             route.getPath().push(coords);
-        }, 3 * i, pathCoords[i]);
+        }, 10 * i, pathCoords[i]);
     }
-
-
-
 }
 
-
-
-async function getDirections1(map, callback) {
-
-
-
-    var waypts = [{location: 'Dallas, TX'}, {location: 'El Paso, TX'}];
-    var directionsService1 = new google.maps.DirectionsService();
-
+// Travis Walking
+function getDirections1(map) {
+    var directionsService = new google.maps.DirectionsService();
     var request = {
-              origin: 'Big Bend National Park, TX',
-              destination: new google.maps.LatLng(34.219878, -118.350022),
-              waypoints: waypts,
+              origin: new google.maps.LatLng(29.127178, -103.242195),       // Big Bend National Park
+              waypoints: google.maps.LatLng(29.321473, -103.615719),        // Terlingua
+              destination: new google.maps.LatLng(29.622680, -103.572845),   // Terlingua M.D. Clinc
+              travelMode: google.maps.TravelMode.WALKING
+          };
+    directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            walking(map, result.routes[0].overview_path);
+        }
+    });
+}
+
+// Walter flys from LA
+function jump1(map) {
+  var lineSymbol = {
+    path: 'M 0,-1 0,1',
+    strokeOpacity: 1,
+    scale: 4
+  };
+
+  var line = new google.maps.Polyline({
+    path: [],
+    geodesic: true,
+    strokeColor: 'white',
+    strokeOpacity: 0,
+    strokeWeight: 5,
+    editable: false,
+    icons: [{
+            icon: lineSymbol,
+            offset: '0',
+            repeat: '20px'
+          }],
+    map:map
+  });
+
+  var locations = [{lat: 34.219878, lng: -118.350022},    // ? Walter's Home
+                   {lat: 31.798908, lng: -106.394487}   // El Paso Airport
+                 ];
+
+  for (var i = 0; i < locations.length; i++) {
+    setTimeout(function(coords) {
+        line.getPath().push(new google.maps.LatLng(coords.lat, coords.lng));
+    }, 50 * i, locations[i]);
+  }
+}
+
+// Walter Picks Up Travis
+function getDirections2(map) {
+    var directionsService = new google.maps.DirectionsService();
+    var request = {
+              origin: new google.maps.LatLng(31.798908, -106.394487),            // El Paso Airport
+              waypoints: [
+                {location: new google.maps.LatLng(29.622680, -103.572845)},     // Terlingua M.D. Clinc
+                {location: new google.maps.LatLng(30.208263, -103.254390)},     // Marathon Motel & RV Park
+                {location: new google.maps.LatLng(30.206028, -103.241448)},     // Shoemaker Hardware Store
+                {location: new google.maps.LatLng(30.893629, -102.870452)},     // El Rancho Motel
+                {location: new google.maps.LatLng(30.893293, -102.873053)},     // Stop at the Gas Station
+                {location: new google.maps.LatLng(31.798908, -106.394487)},     // El Paso Airport
+                {location: new google.maps.LatLng(31.799097, -106.396152)},     // Avid Car Rental
+                {location: 'Four Courners, CA'},
+                {location: 'Mojave Desert, CA'}
+              ],
+              destination: new google.maps.LatLng(34.219878, -118.350022),      // Walter's Home
+  //            destination: 'Chicago, IL',
               travelMode: google.maps.TravelMode.DRIVING
           };
 
-    directionsService1.route(request, function(result, status) {
+    directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            autoRefresh1(map, result.routes[0].overview_path);
+            driving(map, result.routes[0].overview_path);
         }
-});
+    });
 }
 
-async function getDirections2(map) {
 
-
-    var waypts = [{location: 'San Francisco, CA'}, {location: 'Yellowstone National Park, WY'}];
-    var directionsService2 = new google.maps.DirectionsService();
-
+// Travis in LA
+function getDirections3(map) {
+    var directionsService = new google.maps.DirectionsService();
     var request = {
-              origin: new google.maps.LatLng(34.219878, -118.350022),
-              destination: 'Chicago, IL',
-              waypoints: waypts,
+              origin: new google.maps.LatLng(34.219878, -118.350022),      // Walter's Home
+              waypoints: [
+                {location: new google.maps.LatLng(34.219730, -118.350115)},     // Backyard
+                {location: new google.maps.LatLng(34.198446, -118.321350)},     // Hunter's School
+                {location: new google.maps.LatLng(34.219878, -118.350022)},     // Walter's Home
+                {location: new google.maps.LatLng(34.198446, -118.321350)},     // Hunter's School
+                {location: new google.maps.LatLng(34.220059, -118.348308)},     // Walking home midpoint
+                {location: new google.maps.LatLng(34.219878, -118.350022)},     // Walter's home
+                {location: new google.maps.LatLng(34.219730, -118.350115)},     // Backyard
+                {location: '13795 Balboa Blvd, Sylmar, CA 91342'}               // Travis Nightwalking
+              ],
+              destination: new google.maps.LatLng(34.198446, -118.321350),      // Hunter's School
+  //            destination: 'Chicago, IL',
               travelMode: google.maps.TravelMode.WALKING
           };
 
-    directionsService2.route(request, function(result, status) {
+    directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            autoRefresh2(map, result.routes[0].overview_path);
+            walking(map, result.routes[0].overview_path);
         }
-});
-
+    });
 }
+
+
+
 
 google.maps.event.addDomListener(window, 'load', initMap);
