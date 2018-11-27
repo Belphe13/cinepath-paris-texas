@@ -1,8 +1,15 @@
-/*  Future Improvement
+/*
+*   Route animation based on actual film locations of
+*   Paris, Texas by Wim Wender in 1984 using Google
+*   Maps API.
 *
-*   1. Detailed line colors
-*   2. Potential smooth PanTo
-*   3. jump2/3(map) discard???
+*   Solid line indicates walk/drive;
+*   Dashed line indicates fly/jumps;
+*
+*   Possible Future Improvements:
+*     1. Detailed line colors?
+*     2. Potential smooth PanTo?
+*     3. jump2/3(map) discard???
 */
 
 var map;
@@ -53,16 +60,16 @@ async function initMap() {
       }, 8000);
 
       setTimeout(function(){
-        jump2(map);    //250 ??? 3000
+        jump2(map);    //250
       }, 11000);
 
       setTimeout(function(){
         getDirections5(map);    //3000
-      }, 14000);
+      }, 11250);
 
       setTimeout(function(){
         jump3(map);
-      }, 17000);
+      }, 14250);
 }
 
 /* Travel Modes
@@ -150,7 +157,9 @@ function jump1(map) {
 
   for (var i = 0; i < locations.length; i++) {
     setTimeout(function(coords) {
-        line.getPath().push(new google.maps.LatLng(coords.lat, coords.lng));
+        latlng = new google.maps.LatLng(coords.lat, coords.lng);
+//        map.panTo(latlng);
+        line.getPath().push(latlng);
     }, 50 * i, locations[i]);
   }
 }
@@ -260,7 +269,9 @@ function jump2(map) {
 
   for (var i = 0; i < locations.length; i++) {
     setTimeout(function(coords) {
-        line.getPath().push(new google.maps.LatLng(coords.lat, coords.lng));
+      latlng = new google.maps.LatLng(coords.lat, coords.lng);
+//        map.panTo(latlng);
+      line.getPath().push(latlng);
     }, 50 * i, locations[i]);
   }
 }
@@ -322,7 +333,9 @@ function jump3(map) {
 
   for (var i = 0; i < locations.length; i++) {
     setTimeout(function(coords) {
-        line.getPath().push(new google.maps.LatLng(coords.lat, coords.lng));
+      latlng = new google.maps.LatLng(coords.lat, coords.lng);
+//        map.panTo(latlng);
+      line.getPath().push(latlng);
     }, 50 * i, locations[i]);
   }
 }
