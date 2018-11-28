@@ -8,7 +8,7 @@ function carousel() {
        x[i].style.display = "none";
     }
     myIndex++;
-    if (myIndex > x.length) {myIndex = 1}
+    if (myIndex > x.length) {myIndex = x.length}
     x[myIndex-1].style.display = "block";
-    setTimeout(carousel, 1000); // Change image every 2 seconds
+    setTimeout(carousel, 1000); // Change image every 1 second
 }
