@@ -17,17 +17,17 @@ img {
 }
 
 #map {
-  float: left;
-  height: 100%;
-  width: 60%
+
+  height: 50%;
+  width: 100%;
 }
 
 #display {
-  float: right;
-  height: 100%;
-  width: 40%;
-}
 
+  height: 50%;
+  width: 100%;
+}
+/*
 #frameDisplay{
   height: 50%;
   background-color: yellow;
@@ -38,3 +38,4 @@ img {
   background-color: orange;
   color: white;
 }
+*/
