@@ -44,7 +44,6 @@ async function initMap() {
 
        setTimeout(function(){
          jump1(map);            // 100
-         document.getElementById("frameDisplay").src = '../frames/paris-texas/output_0007.png';
        }, 3000);
 
        setTimeout(function(){
