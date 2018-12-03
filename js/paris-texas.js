@@ -40,35 +40,40 @@ async function initMap() {
          ]
        });
 
-       getDirections1(map);     // 3000
+       getDirections1(map);     // 2000
 
        setTimeout(function(){
          jump1(map);            // 100
-       }, 3000);
+       }, 2000);
 
        setTimeout(function(){
          getDirections2(map);   // 2900
-       }, 3100);
+       }, 2100);
 
       setTimeout(function(){
         getDirections3(map);    // 2000
-      }, 6000);
+      }, 5000);
 
       setTimeout(function(){
         getDirections4(map);    // 3000
-      }, 8000);
+      }, 7000);
 
       setTimeout(function(){
-        jump2(map);    //250
-      }, 11000);
+        jump2(map);             // 250
+      }, 10000);
 
       setTimeout(function(){
-        getDirections5(map);    //3000
-      }, 11250);
+        getDirections5(map);    // 2000 + 13*60
+      }, 10250);
+
+      setTimeout(function(){
+        getDirections6(map);    // 2000 + 20*60
+      }, 13030);
 
       setTimeout(function(){
         jump3(map);
-      }, 14250);
+      }, 16230);
+
 }
 
 /* Travel Modes
@@ -89,7 +94,7 @@ function walking(map, pathCoords) {
     for (var i = 0; i < pathCoords.length; i++) {
         setTimeout(function(coords) {
             route.getPath().push(coords);
-        }, 10 * i, pathCoords[i]);
+        }, 5 * i, pathCoords[i]);
     }
 }
 
@@ -111,7 +116,7 @@ function driving(map, pathCoords) {
     }
 }
 
-// Travis Walking
+// Travis Walking 0:58 - 6:59
 function getDirections1(map) {
     var directionsService = new google.maps.DirectionsService();
     var request = {
@@ -127,7 +132,7 @@ function getDirections1(map) {
     });
 }
 
-// Walter flys from LA
+// Walter flys from LA 6:59
 function jump1(map) {
   var lineSymbol = {
     path: 'M 0,-1 0,1',
@@ -163,7 +168,7 @@ function jump1(map) {
   }
 }
 
-// Walter Picks Up Travis
+// Walter Picks Up Travis 8:39
 function getDirections2(map) {
     var directionsService = new google.maps.DirectionsService();
     var request = {
@@ -192,7 +197,7 @@ function getDirections2(map) {
 }
 
 
-// Travis in LA
+// Travis in LA 37:58
 function getDirections3(map) {
     var directionsService = new google.maps.DirectionsService();
     var request = {
@@ -218,7 +223,7 @@ function getDirections3(map) {
     });
 }
 
-// Father and Son Driving
+// Father and Son Driving 1:15:09
 function getDirections4(map) {
     var directionsService = new google.maps.DirectionsService();
     var request = {
@@ -236,7 +241,7 @@ function getDirections4(map) {
     });
 }
 
-// Hunter Calls Home
+// Hunter Calls Home 1:18:40
 function jump2(map) {
   var lineSymbol = {
     path: 'M 0,-1 0,1',
@@ -275,7 +280,7 @@ function jump2(map) {
   }
 }
 
-// Travis and Hunter to Texas
+// Travis and Hunter to Texas 1:22:25 - 1:34:57
 function getDirections5(map) {
     var directionsService = new google.maps.DirectionsService();
     var request = {
@@ -283,15 +288,9 @@ function getDirections5(map) {
               waypoints: [
                 {location: new google.maps.LatLng(29.764011, -95.362674)},     // Chase Bank Drive Up
                 {location: new google.maps.LatLng(29.871551, -93.934962)},     // Port Auther
-                {location: new google.maps.LatLng(29.871065, -93.934972)},     // Travis enters building
-                {location: new google.maps.LatLng(29.871193, -93.935046)},     // Keyhole Klub
-                {location: new google.maps.LatLng(28.921138, -97.609307)},     // Westhoff ??? Nordheim
-                {location: new google.maps.LatLng(28.921919, -97.610754)},     // Broadway Bar
-                {location: new google.maps.LatLng(28.922325, -97.610163)},     // Grocery
-                {location: new google.maps.LatLng(29.757957, -95.371180)},       // DoubleTree Houston Downtown
-                {location: new google.maps.LatLng(29.871193, -93.935046)}       // Keyhole Klub
+                {location: new google.maps.LatLng(29.871065, -93.934972)}     // Travis enters building
               ],
-              destination: new google.maps.LatLng(29.758249, -95.369281),      // Downtown Parking Garage
+              destination: new google.maps.LatLng(29.871193, -93.935046),      // Keyhole Klub
               travelMode: google.maps.TravelMode.DRIVING
           };
 
@@ -302,7 +301,33 @@ function getDirections5(map) {
     });
 }
 
-// Mother and Son Reunion
+// First Vist at Keyhole Klub 13'07
+
+// Travis leaves Keyhole Klub 1:48:04 - 1:58:54
+function getDirections6(map) {
+    var directionsService = new google.maps.DirectionsService();
+    var request = {
+              origin: new google.maps.LatLng(29.871193, -93.935046),      // Keyhole Klub
+              waypoints: [
+                {location: new google.maps.LatLng(28.921138, -97.609307)},     // Westhoff ??? Nordheim
+                {location: new google.maps.LatLng(28.921919, -97.610754)},     // Broadway Bar
+                {location: new google.maps.LatLng(28.922325, -97.610163)},     // Grocery
+                {location: new google.maps.LatLng(29.757957, -95.371180)}       // DoubleTree Houston Downtown
+              ],
+              destination: new google.maps.LatLng(29.871193, -93.935046),      // Keyhole Klub
+              travelMode: google.maps.TravelMode.DRIVING
+          };
+
+    directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            driving(map, result.routes[0].overview_path);
+        }
+    });
+}
+
+// The Famouse Scene 20'46
+
+// Mother and Son Reunion 2:19:40
 function jump3(map) {
   var lineSymbol = {
     path: 'M 0,-1 0,1',
