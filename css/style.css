@@ -13,23 +13,20 @@ html, body {
 }
 
 img {
-  height: 100%;
+  width: 100%;
 }
 
 #map {
   height: 50%;
-  width: 100%;
 }
 
-#frameDisplay {
-  width: 100%;
+#display{
+  height: 50%;
 }
-
-
 /*
 #frameDisplay{
-  height: 50%;
-  background-color: yellow;
+  height: 100%;
+  width: auto;
 }
 
 #clockDisplay {
