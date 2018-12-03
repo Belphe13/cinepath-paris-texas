@@ -112,7 +112,7 @@ function driving(map, pathCoords) {
     for (var i = 0; i < pathCoords.length; i++) {
         setTimeout(function(coords) {
             route.getPath().push(coords);
-        }, 10 * i, pathCoords[i]);
+        }, 8 * i, pathCoords[i]);
     }
 }
 
