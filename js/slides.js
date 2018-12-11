@@ -10,5 +10,5 @@ function carousel() {
     myIndex++;
     if (myIndex > x.length) {myIndex = x.length}
     x[myIndex-1].style.display = "block";
-    setTimeout(carousel, 400); // Change image every 1 second
+    setTimeout(carousel, 750); // Change image every 0.75 second
 }
