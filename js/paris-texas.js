@@ -16,9 +16,9 @@ var map;
 
 async function initMap() {
        map = new google.maps.Map(document.getElementById('map'), {
-         zoom: 5,
+         zoom: 5.5,
          disableDefaultUI: true,
-         center: new google.maps.LatLng(28.633439, -106.071533),
+         center: new google.maps.LatLng(28.550321, -105.068287),
          styles: [{elementType: 'geometry', stylers: [{color: '#242f3e'}]},
            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
@@ -40,48 +40,46 @@ async function initMap() {
          ]
        });
 
-       getDirections1(map);     // 2000 * 2
+       getDirections1(map);     // 1250 + 500
 
        setTimeout(function(){
-         jump1(map);            // 100 * 2
-       }, 4000);
+         jump1(map);            // 50
+       }, 1750);
 
        setTimeout(function(){
-         getDirections2(map);   // 2900 * 2
-       }, 4200);
+         getDirections2(map);   // 6350
+       }, 1800);
 
       setTimeout(function(){
-        getDirections3(map);    // 2000 * 2
-      }, 10000);
+        getDirections3(map);    // 7750
+      }, 8150);
 
       setTimeout(function(){
-        getDirections4(map);    // 3000 * 2
-      }, 14000);
+        getDirections4(map);    // 730
+      }, 15900);
 
       setTimeout(function(){
-        jump2(map);             // 250 * 2
-      }, 20000);
+        jump2(map);             // 800
+      }, 16630);
 
       setTimeout(function(){
-        getDirections5(map);    // (2000 + 13 * 60) * 2
-      }, 20500);
+        getDirections5(map);    // 2600 + 2700
+      }, 17430);
 
       setTimeout(function(){
-        getDirections6(map);    // (2000 + 20 * 60) * 2
-      }, 26060);
+        getDirections6(map);    // 2300 + 4350
+      }, 22730);
 
       setTimeout(function(){
         jump3(map);
-      }, 32460);
+      }, 29380);
 
 }
 
-/* Travel Modes
-*  Walking speed: 15
-*  Driving speed: 15
-*  Fast Driving: 10
+/* Travel Modes Abandoned
+*  Tuning paramter is no witchcraft but mathmatics.
 */
-function walking(map, pathCoords) {
+function route1(map, pathCoords) {
     var route = new google.maps.Polyline({
         path: [],
         geodesic : true,
@@ -95,11 +93,11 @@ function walking(map, pathCoords) {
     for (var i = 0; i < pathCoords.length; i++) {
         setTimeout(function(coords) {
             route.getPath().push(coords);
-        }, 15 * i, pathCoords[i]);
+        }, 4 * i, pathCoords[i]);
     }
 }
 
-function driving(map, pathCoords) {
+function route2(map, pathCoords) {
     var route = new google.maps.Polyline({
         path: [],
         geodesic : true,
@@ -113,11 +111,11 @@ function driving(map, pathCoords) {
     for (var i = 0; i < pathCoords.length; i++) {
         setTimeout(function(coords) {
             route.getPath().push(coords);
-        }, 15 * i, pathCoords[i]);
+        }, 31 * i, pathCoords[i]);
     }
 }
 
-function fastDriving(map, pathCoords) {
+function route3(map, pathCoords) {
     var route = new google.maps.Polyline({
         path: [],
         geodesic : true,
@@ -131,7 +129,62 @@ function fastDriving(map, pathCoords) {
     for (var i = 0; i < pathCoords.length; i++) {
         setTimeout(function(coords) {
             route.getPath().push(coords);
-        }, 5 * i, pathCoords[i]);
+        }, 23 * i, pathCoords[i]);
+    }
+}
+
+function route4(map, pathCoords) {
+    var route = new google.maps.Polyline({
+        path: [],
+        geodesic : true,
+        strokeColor: 'white',
+        strokeOpacity: 0.5,
+        strokeWeight: 5,
+        editable: false,
+        map:map
+    });
+
+    for (var i = 0; i < pathCoords.length; i++) {
+        setTimeout(function(coords) {
+            route.getPath().push(coords);
+        }, 2.3 * i, pathCoords[i]);
+    }
+}
+
+function route5(map, pathCoords) {
+    var route = new google.maps.Polyline({
+        path: [],
+        geodesic : true,
+        strokeColor: 'white',
+        strokeOpacity: 0.5,
+        strokeWeight: 5,
+        editable: false,
+        map:map
+    });
+
+    for (var i = 0; i < pathCoords.length; i++) {
+        setTimeout(function(coords) {
+            route.getPath().push(coords);
+        }, 12 * i, pathCoords[i]);
+    }
+}
+
+
+function route6(map, pathCoords) {
+    var route = new google.maps.Polyline({
+        path: [],
+        geodesic : true,
+        strokeColor: 'white',
+        strokeOpacity: 0.5,
+        strokeWeight: 5,
+        editable: false,
+        map:map
+    });
+
+    for (var i = 0; i < pathCoords.length; i++) {
+        setTimeout(function(coords) {
+            route.getPath().push(coords);
+        }, 10 * i, pathCoords[i]);            // playing safe
     }
 }
 
@@ -146,7 +199,7 @@ function getDirections1(map) {
           };
     directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            walking(map, result.routes[0].overview_path);
+            route1(map, result.routes[0].overview_path);
         }
     });
 }
@@ -183,7 +236,7 @@ function jump1(map) {
         latlng = new google.maps.LatLng(coords.lat, coords.lng);
 //        map.panTo(latlng);
         line.getPath().push(latlng);
-    }, 25 * i, locations[i]);
+    }, 50 * i, locations[i]);
   }
 }
 
@@ -210,7 +263,7 @@ function getDirections2(map) {
 
     directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            driving(map, result.routes[0].overview_path);
+            route2(map, result.routes[0].overview_path);
         }
     });
 }
@@ -237,7 +290,7 @@ function getDirections3(map) {
 
     directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            walking(map, result.routes[0].overview_path);
+            route3(map, result.routes[0].overview_path);
         }
     });
 }
@@ -255,7 +308,7 @@ function getDirections4(map) {
 
     directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            driving(map, result.routes[0].overview_path);
+            route4(map, result.routes[0].overview_path);
         }
     });
 }
@@ -295,7 +348,7 @@ function jump2(map) {
       latlng = new google.maps.LatLng(coords.lat, coords.lng);
 //        map.panTo(latlng);
       line.getPath().push(latlng);
-    }, 100 * i, locations[i]);
+    }, 200 * i, locations[i]);
   }
 }
 
@@ -315,7 +368,7 @@ function getDirections5(map) {
 
     directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            fastDriving(map, result.routes[0].overview_path);
+            route5(map, result.routes[0].overview_path);
         }
     });
 }
@@ -339,7 +392,7 @@ function getDirections6(map) {
 
     directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            driving(map, result.routes[0].overview_path);
+            route6(map, result.routes[0].overview_path);
         }
     });
 }
@@ -379,7 +432,7 @@ function jump3(map) {
       latlng = new google.maps.LatLng(coords.lat, coords.lng);
 //        map.panTo(latlng);
       line.getPath().push(latlng);
-    }, 100 * i, locations[i]);
+    }, 100 * i, locations[i]);        // playing safe
   }
 }
 
