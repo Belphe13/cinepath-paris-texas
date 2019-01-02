@@ -13,6 +13,7 @@ html, body {
 }
 
 img {
+  border: solid white;
   width: 65%;
 }
 
