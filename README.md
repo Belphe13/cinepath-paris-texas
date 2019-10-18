@@ -1,28 +1,28 @@
 # CINEPATH
 
-CINEMATIC GEOGRAPHY
-	- HOW HAVE FILMMAKERS DEVELOPED THEIR FILMING LOCATIONS?
-	- TO EVOKE VIEWERS' EXPERIENCE OF MOVING THROUGH SPACE?
-	- TO TRANSPORT TO NEW PLACES?
+Cinematic geography 
+	
+	- how have filmmakers developed their filming locations? 
+	- to evoke viewers' experience of moving through space? 
+	- to transport to new places?
 
-	- GEOGRAPHY AS A SUBJECT OF FILM - ROAD MOVIES
-	- CERTAIN CONVENTIONS OF FRAMING SPACE AND MOTION?
-	- THEMES SUCH AS CULTURAL LANDSCAPES, MOBILITIES AND THE RIGHT TO CITY
+	- geography as a subject of film - road movies
+	- certain conventions of framing space and motion?
+	- themes such as cultural landscapes, mobilities and the right to city
+	
+A jumble of discursive waypoints that confound as guide our way through a critical landscape that at times resembles an interdisciplinary quagmire
 
-A JUMBLE OF DISCURSIVE WAYPOINTS THAT CONFOUND AS GUIDE OUR WAY THROUGH A CRITICAL LANDSCAPE THAT AT TIMES RESEMBLES AN INTERDISCIPLINARY QUAGMIRE
+Tom conley points out that "Since the advent of narrative in cinema - which is to say, from its very beginnings - maps are inserted in the field of the image to indicate where action 'take place.'"
 
-TOM CONLEY POINTS OUT THAT "SINCE THE ADVENT OF NARRATIVE IN CINEMA - WHICH IS TO SAY, FROM ITS VERY BEGINNINGS - MAPS ARE INSERTED IN THE FIELD OF THE IMAGE TO INDICATE WHERE ACTION 'TAKE PLACE.'"
+Conley's approach to what he terms "Cartographic cinema" can be defined in terms of, on the one hand, a focus on the geographic and representational cartographies contained with the film's diegesis and, on the other hand, psychoanalytical and affective forms of mapping that are mobilized between film and viewer in terms of his or her subjectivity and psychic positionality.
 
-CONLEY'S APPROACH TO WHAT HE TERMS "CARTOGRAPHIC CINEMA" CAN BE DEFINED IN TERMS OF, ON THE ONE HAND, A FOCUS ON THE GEOGRAPHIC AND REPRESENTATIONAL CARTOGRAPHIES CONTAINED WITH THE FILM'S DIEGESIS AND, ON THE OTHER HAND, PSYCHOANALYTICAL AND AFFECTIVE FORMS OF MAPPING THAT ARE MOBILIZED BETWEEN FILM AND VIEWER IN TERMS OF HIS OR HER SUBJECTIVITY AND PSYCHIC POSITIONALITY.
+...Films that have the potential to reorient the spectator through activating the imagination to negotiate different subject positions and places "In the area between the of the film, as it is seen, and the imagination as it moves about and deciphers the film"
 
-...FILMS THAT HAVE THE POTENTIAL TO REORIENT THE SPECTATOR THROUGH ACTIVATING THE IMAGINATION TO NEGOTIATE DIFFERENT SUBJECT POSITIONS AND PLACES "IN THE AREA BETWEEN THE OF THE FILM, AS IT IS SEEN, AND THE IMAGINATION AS IT MOVES ABOUT AND DECIPHERS THE FILM"
 
-# NOT THAT I REALLY CARE
+# Movie mapping and cinematographic tourism
 
-MOVIE MAPPING AND CINEMATOGRAPHIC TOURISM
-	- MARKETING - FILM TOURISM
-	- CONSUMPTION OF CITIES AND RURAL DESTINATIONS
-	- THE CINEMATIC TOURIST -TZANELLI
-
+	- marketing - film tourism
+	- consumption of cities and rural destinations
+	- the cinematic tourist -tzanelli
 
 
