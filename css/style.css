@@ -12,11 +12,6 @@ html, body {
   padding: 0;
 }
 
-img {
-  border: solid white;
-  width: 65%;
-}
-
 #map {
     height: 100%;
     width: 100%;
@@ -29,4 +24,9 @@ img {
   bottom: 30px;
   left: 30px;
   z-index: 2;
+}
+
+#display img {
+  border: solid white;
+  width: 65%;
 }
